@@ -8,6 +8,25 @@
   padding: 30px 0 !important;
   font-size: 1.7em !important;
 }
+.app-bar {
+  top: auto !important;
+  bottom: 0 !important;
+  background-color: '#4527a0' !important;
+}
+@media only screen and (min-width: 600px) {
+  .app-title {
+    padding: 40px 0 !important;
+    font-size: 1.8em !important;
+    margin-left: 1rem !important;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .app-title {
+    padding: 50px 0 !important;
+    font-size: 2em !important;
+  }
+}
+
 .app-header {
   background-color: #5e35b1 !important;
   font-family: 'Roboto', sans-serif;

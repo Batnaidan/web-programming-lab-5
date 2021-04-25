@@ -1,109 +1,210 @@
+import React, { useState } from 'react';
 import './App.css';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
-import MoreIcon from '@material-ui/icons/MoreVert';
+
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import React, { useState } from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import ImageIcon from '@material-ui/icons/Image';
+
+import Navbar from './Navbar.js';
+import MobileNavbar from './MobileNavbar.js';
+
 const useStyles = makeStyles((theme) => ({
-  text: {
-    padding: theme.spacing(2, 2, 0),
+  root: {
+    display: 'flex',
+    margin: '2rem 0',
   },
-  paper: {
-    paddingBottom: 50,
+  flexRoot: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '2rem 0',
   },
-  list: {
-    marginBottom: theme.spacing(2),
+  cover: {
+    width: '250px',
+    height: '250px',
+    backgroundColor: '#b2dfdb',
   },
-  subheader: {
-    backgroundColor: theme.palette.background.paper,
+  flexCover: {
+    alignSelf: 'center',
+    backgroundColor: '#b2dfdb',
   },
-  appBar: {
-    top: 'auto',
-    bottom: 0,
-    backgroundColor: '#4527a0',
+  information: {
+    display: 'flex',
+    flexDirection: 'column',
   },
-  grow: {
-    flexGrow: 1,
-  },
-  fabButton: {
+  sourceButton: {
     position: 'absolute',
-    zIndex: 1,
-    top: -30,
-    left: 0,
-    right: 0,
-    margin: '0 auto',
+    bottom: 40,
+    right: 40,
+    color: '#fff',
+    fontWeight: 600,
+    padding: '8px 12px',
   },
 }));
+
 function App() {
   const classes = useStyles();
-  const [matches, setMatch] = useState(
-    window.matchMedia('(min-width: 768px)').matches
+  const [matches] = useState(window.matchMedia('(min-width: 960px)').matches);
+  const [matches620] = useState(
+    window.matchMedia('(min-width: 620px)').matches
   );
-  const [currentEl, setEl] = useState(null);
-
-  const handleClick = (event) => {
-    setEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setEl(null);
-  };
   return (
-    <div>
-      <AppBar position="fixed" className="app-header">
+    <div style={{ backgroundColor: '#f5f5f5' }}>
+      <AppBar position="relative" className="app-header">
         <Toolbar>
           <Typography variant="h4" noWrap className="app-title">
             Name & Title
           </Typography>
         </Toolbar>
+        {matches ? <Navbar /> : ''}
       </AppBar>
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleClick}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={currentEl}
-            keepMounted
-            open={Boolean(currentEl)}
-            onClose={handleClose}
-          >
-            <MenuItem
-              onClick={handleClose}
-              style={{ height: '1em', padding: '0', lineHeight: '50px' }}
+      {matches ? '' : <MobileNavbar />}
+      <div>
+        <Container maxWidth="md">
+          <Card className={matches620 ? classes.root : classes.flexRoot}>
+            <CardMedia
+              className={matches620 ? classes.cover : classes.flexCover}
             >
-              Overview
-            </MenuItem>
-            <MenuItem onClick={handleClose}>Features</MenuItem>
-            <MenuItem onClick={handleClose}>Details</MenuItem>
-            <MenuItem onClick={handleClose}>Technology</MenuItem>
-            <MenuItem onClick={handleClose}>FAQ</MenuItem>
-          </Menu>
-          <Fab aria-label="add" className={`${classes.fabButton} button-color`}>
-            <AddIcon />
-          </Fab>
-          <div className={classes.grow} />
-          <Button variant="contained" className="button-color" size="small">
-            View Source
-          </Button>
-        </Toolbar>
-      </AppBar>
-      <Container>hello</Container>
+              {/* <img
+                src="https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png"
+                alt="after hours album cover"
+                width="250"
+              ></img> */}
+            </CardMedia>
+            <div className={classes.information}>
+              <CardHeader
+                action={
+                  <IconButton aria-label="settings">
+                    <MoreVertIcon />
+                  </IconButton>
+                }
+                style={{ paddingBottom: 0 }}
+              />
+              <CardContent>
+                <Typography
+                  variant="h5"
+                  color="textPrimary"
+                  component="p"
+                  style={{ padding: '0 24px' }}
+                >
+                  Features
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textPrimary"
+                  component="p"
+                  style={{ padding: '20px 24px' }}
+                >
+                  Dolore ex deserunt aute fugiat nulla ea sunt aliqua nisi
+                  cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu
+                  fugiat consectetur elit cillum esse.
+                </Typography>
+              </CardContent>
+              <Divider></Divider>
+              <div>
+                <Button
+                  color="primary"
+                  style={{
+                    color: '#00bad2',
+                    fontWeight: '600',
+                    margin: '3px 36px',
+                  }}
+                  size="large"
+                >
+                  Read our features
+                </Button>
+              </div>
+            </div>
+          </Card>
+          <Card className={classes.root}>
+            <div className={classes.information}>
+              <CardHeader
+                action={
+                  <IconButton aria-label="settings">
+                    <MoreVertIcon />
+                  </IconButton>
+                }
+                style={{ paddingBottom: 0 }}
+              />
+              <CardContent style={{ padding: '0 16px' }}>
+                <Typography
+                  variant="h5"
+                  color="textPrimary"
+                  component="p"
+                  style={{ padding: '0 24px' }}
+                >
+                  Details
+                </Typography>
+                <List>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <ImageIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Lorem ipsum dolor sit amet"
+                      secondary="Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis"
+                    />
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <ImageIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Lorem ipsum dolor sit amet"
+                      secondary="Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis"
+                    />
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <ImageIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Lorem ipsum dolor sit amet"
+                      secondary="Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis"
+                    />
+                  </ListItem>
+                </List>
+              </CardContent>
+            </div>
+          </Card>
+        </Container>
+      </div>
+      {matches ? (
+        <Button
+          variant="contained"
+          className={classes.sourceButton}
+          size="large"
+          style={{ backgroundColor: '#ff4081' }}
+          href="https://github.com/Batnaidan/web-programming-lab-5"
+        >
+          View Source
+        </Button>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
