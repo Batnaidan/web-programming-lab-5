@@ -37,11 +37,9 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: '250px',
     height: '250px',
-    backgroundColor: '#b2dfdb',
   },
   flexCover: {
     alignSelf: 'center',
-    backgroundColor: '#b2dfdb',
   },
   information: {
     display: 'flex',
@@ -80,11 +78,11 @@ function App() {
             <CardMedia
               className={matches620 ? classes.cover : classes.flexCover}
             >
-              {/* <img
+              <img
                 src="https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png"
                 alt="after hours album cover"
                 width="250"
-              ></img> */}
+              ></img>
             </CardMedia>
             <div className={classes.information}>
               <CardHeader
