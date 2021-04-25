@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.button-color {
+  background-color: #ff4081 !important;
+  color: #fff !important;
+}
+.app-title {
+  padding: 30px 0 !important;
+  font-size: 1.7em !important;
+}
+.app-header {
+  background-color: #5e35b1 !important;
+  font-family: 'Roboto', sans-serif;
+}
 .App {
   text-align: center;
 }
